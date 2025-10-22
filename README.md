@@ -1,5 +1,25 @@
-# distributed-db
 
-Designing systems with distributed databases in the energy sector
+# Distributed-DB
 
-5th year, 1st semester
+> **Designing Systems with Distributed Databases in the Energy Sector**  
+> *5th year, 1st semester*
+
+---
+
+## Лабораторні роботи
+| № | Назва практичної | Гілка | 
+|:-:|------------------|--------|
+| 1 | **Дослідження продуктивності Apache Kafka для енергетичних IoT-потоків** | [lr-1](../../tree/lr1) |
+| 2 | **Основи Cassandra: створення першої енергетичної системи моніторингу** | [lr-2](../../tree/l2) |
+| 3 | **ЛР3** | [lr-3] |
+| 4 | **ЛР4** | [lr-4] |
+| 5 | **ЛР5** | [lr-5] |
+| 6 | **ЛР6** | [lr-6] |
+
+
+
+## Автор
+
+**Ткаченко Майя ТР-52мп**
+---
+
