@@ -1,0 +1,48 @@
+groups:
+- name: reactor_performance
+  interval: 30s
+  rules:
+  
+  # Алерт 1: Низька ефективність
+  - alert: LowReactorEfficiency 
+    expr: avg_over_time(reactor_efficiency_pct[15m]) < 95
+    for: 5m 
+    labels:
+      severity: warning
+      system: productivity
+    annotations:
+      summary: "Низька ефективність реактора"
+      description: "Реактор {{ $labels.reactor_id }} працює на ефективності {{ $value }}% (нижче 95% протягом 15 хвилин)."
+
+  # Алерт 2: Час Перезавантаження Палива
+  - alert: FuelReloadNeeded
+    expr: reactor_burnup_pct > 90
+    for: 1m
+    labels:
+      severity: critical
+      system: maintenance
+    annotations:
+      summary: "Критичне вигорання палива"
+      description: "Реактор {{ $labels.reactor_id }}: вигорання палива досягло {{ $value }}% (вище 90%). Необхідне планування перезавантаження."
+
+  # Алерт 3: Відхилення від планової потужності
+  - alert: SignificantPowerDeviation 
+    expr: abs(reactor_power_mw - 980) > 5
+    for: 1m
+    labels:
+      severity: warning
+      system: operation
+    annotations:
+      summary: "Значне відхилення потужності"
+      description: "Реактор {{ $labels.reactor_id }} має потужність {{ $value }} МВт (номінал 980 МВт)."
+
+  # Алерт 4: Відсутність даних
+  - alert: ProducerOffline
+    expr: time() - producer_heartbeat > 60
+    for: 1m
+    labels:
+      severity: critical
+      system: monitoring
+    annotations:
+      summary: "Producer даних АЕС не працює"
+      description: "Producer не оновлює дані понад 1 хвилину"
